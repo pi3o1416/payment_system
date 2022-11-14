@@ -39,9 +39,8 @@ class Transection(models.Model):
         max_digits=15,
         decimal_places=3
     )
-    transection_status = models.CharField(
+    transection_status = models.IntegerField(
         _("Transection Status"),
-        max_length = 20,
         choices=TransectionStatus.choices,
         default=TransectionStatus.INITIATED
     )
@@ -65,8 +64,5 @@ class Transection(models.Model):
         _("Customer Phone no"),
         max_length = 14
     )
-
-    def __str__(self):
-        return self.transection_id
 
 
