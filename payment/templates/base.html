@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <title>
+            {% block title %}
+            {% endblock title %}
+        </title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
+    </head>
+    <body>
+        <div>
+            <header>
+                <nav class="navbar box p-0">
+                    <div class="navbar-brand">
+                        <a href="#">
+                            <img src="{% static "aamarpay_logo.png" %}" alt="Company Logo" height="120" width="120"/>
+                        </a>
+                    </div>
+                </nav>
+            </header>
+            {% block body %}
+            {% endblock body %}
+        </div>
+    </body>
+</html>
