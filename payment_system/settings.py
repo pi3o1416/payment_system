@@ -141,6 +141,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.CustomUser'
 
 
+#Payment Secrets
+STORE_ID = CONFIG["STORE_ID"]
+SIGNATURE_KEY = CONFIG["SIGNATURE_KEY"]
+SUCCESS_URL = ''
+CANCEL_URL = ''
+FAIL_URL = ''
+
+#Static
+STATIC_URL = 'static/'
+
+
 
 
 
