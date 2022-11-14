@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from dotenv import dotenv_values
+from django.urls import reverse_lazy, reverse
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Config file
 CONFIG = dotenv_values(os.path.join(BASE_DIR, '.env'))
-
 
 
 # Quick-start development settings - unsuitable for production
@@ -44,9 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #Thired party apps
+    # Thired party apps
+    'django_extensions',
 
-    #Local apps
+    # Local apps
     'payment.apps.PaymentConfig',
     'account.apps.AccountConfig',
 ]
@@ -137,34 +138,28 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Custom settings
+# Custom settings
 AUTH_USER_MODEL = 'account.CustomUser'
 
 
-#Payment Secrets
+# Payment Secrets
+PAYMENT_URL = 'https://sandbox.aamarpay.com/request.php'
+PAYMENT_SUCCESS_REDIRECT_URL = 'https://sandbox.aamarpay.com'
 STORE_ID = CONFIG["STORE_ID"]
 SIGNATURE_KEY = CONFIG["SIGNATURE_KEY"]
-SUCCESS_URL = ''
-CANCEL_URL = ''
-FAIL_URL = ''
+SUCCESS_URL = reverse_lazy('payment:payment-success')
+CANCEL_URL = reverse_lazy('payment:payment-canceled')
+FAIL_URL = reverse_lazy('payment:payment-failed')
 
-#Static
+# Static
 STATIC_URL = 'static/'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Shell plus configuration
+import pygments.formatters
+SHELL_PLUS = "ipython"
+SHELL_PLUS_PRINT_SQL = True
+SHELL_PLUS_PYGMENTS_FORMATTER = pygments.formatters.TerminalFormatter
+SHELL_PLUS_PYGMENTS_FORMATTER_KWARGS = {}
 
 
 
